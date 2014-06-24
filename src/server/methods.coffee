@@ -16,11 +16,9 @@ Meteor.methods
     return playerName
 
   'nextQuestion': (gameName) ->
-    Games.update
-      name: gameName
-    ,
-      $set:
-        question: 'What is the more expensive movie?'
+    game = Game.get(gameName)
+    game.nextQuestion()
+    game.save()
 
   'chooseAnswer': withPlayerName (playerName, gameName, answer) ->
     game = Games.findOne
@@ -46,9 +44,7 @@ Meteor.methods
     return
 
   'startGame': (gameName) ->
-    game = Game.get(gameName)
-    game.start()
-    game.save()
+
     return
 
 joinInQueue = (connection, playerName, gameName) ->

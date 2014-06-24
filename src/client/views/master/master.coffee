@@ -9,6 +9,10 @@ Template.master.helpers
     Answers.find
       question: question
 
+  timeLeft: ->
+    game = Games.findOne()
+    game?.timeLeft
+
 Template.master.events
   'click [name="reset"]': ->
     Meteor.call 'resetGame', @roomName, (error, result) ->
