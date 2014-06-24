@@ -17,22 +17,23 @@ Meteor.methods
 
   'nextQuestion': (gameName) ->
     game = Game.get(gameName)
+    return if game.isInQuestion()
     game.nextQuestion()
     game.save()
 
-  'chooseAnswer': withPlayerName (playerName, gameName, answer) ->
-    game = Games.findOne
-      name: gameName
-    return unless (question = game?.question)
+  'chooseAnswer': withPlayerName (playerId, gameName, answer) ->
+    game = Game.get(gameName)
+    return unless game?.isInQuestion()
+    return unless (question = game?.getQuestion())
     currentAnswer = Answers.findOne
-      playerName: playerName
+      playerId: playerId
       gameName: gameName
-      question: question
+      questionId: question._id
     return if currentAnswer?
     Answers.insert
-      playerName: playerName
+      playerId: playerId
       gameName: gameName
-      question: question
+      questionId: question._id
       answer: answer
 
   'leave': withPlayerName (playerName) ->

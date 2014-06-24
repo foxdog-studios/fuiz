@@ -1,9 +1,19 @@
 <template name="master">
-  <p>{{currentQuestion}}</p>
+  <h1>Quiz</h1>
+  {{#with currentQuestion}}
+    <p>{{question}}</p>
+    <ul>
+      <li>a: {{choices.a}} {{isCurrentAnswer 'a'}}</li>
+      <li>b: {{choices.b}} {{isCurrentAnswer 'b'}}</li>
+      <li>c: {{choices.c}} {{isCurrentAnswer 'c'}}</li>
+    </ul>
+  {{/with}}
   <p>{{timeLeft}}</p>
-  {{#each currentAnswers}}
-    {{answer}}
+  <ul>
+  {{#each players}}
+    <li>{{name}} says {{answer playerId}} -- {{playerIsCorrect playerId}} {{score}}</li>
   {{/each}}
+  </ul>
   <button name="reset">Reset</button>
   <button name="next-question">Next Question</button>
 </template>

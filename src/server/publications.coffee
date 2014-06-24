@@ -9,9 +9,9 @@ Meteor.publish 'master', (gameName) ->
     gameName: gameName
   ,
     fields:
-      character: 1
       playerId: 1
-      points: 1
+      score: 1
+      name: 1
   answersCursor = Answers.find
     gameName: gameName
   [ gameCursor, playerCursor, answersCursor ]
@@ -44,7 +44,7 @@ Meteor.publish 'player', (gameName)->
     playerId: @connection.id
   ,
     fields:
-      character: 1
+      name: 1
       gameName: 1
       playerId: 1
   [ gameCursor, playerCursor ]

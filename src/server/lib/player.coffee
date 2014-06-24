@@ -9,12 +9,6 @@ class @Player
     @_doc.joinedAt = Date.now()
     return
 
-  leave: ->
-    if @_hasJoined
-      game = Game.get @_doc.gameName
-      game.save()
-    return
-
   save: ->
     doc = _.omit @_doc, '_id'
     Players.upsert playerId: doc.playerId,
@@ -24,13 +18,13 @@ class @Player
   @get: (playerId) ->
     doc = Players.findOne playerId: playerId
     unless doc?
-      doc = playerId: playerId
+      doc =
+        playerId: playerId
+        name: generateName()
     new Player doc
 
   @leave: (playerId) ->
     check playerId, String
-    player = Player.get playerId
-    player.leave()
     Players.remove playerId: playerId
     return
 

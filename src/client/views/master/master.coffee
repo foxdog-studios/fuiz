@@ -3,11 +3,33 @@ Template.master.helpers
     game = Games.findOne()
     game?.question
 
-  currentAnswers: ->
+  choices: ->
     game = Games.findOne()
     return unless (question = game?.question)
-    Answers.find
-      question: question
+    question.choices
+
+  isCurrentAnswer: (choice) ->
+    return unless (answer = Game.currentAnswer())
+    if choice == answer
+      '✓'
+    else
+      '✗'
+
+  players: ->
+    Players.find()
+
+  answer: (playerId) ->
+    Player.currentAnswer(playerId)
+
+  playerIsCorrect: (playerId) ->
+    playerAnswer = Player.currentAnswer(playerId)
+    return unless playerAnswer?
+    currentAnswer = Game.currentAnswer()
+    return unless currentAnswer?
+    if playerAnswer == currentAnswer
+      '✓'
+    else
+      '✗'
 
   timeLeft: ->
     game = Games.findOne()
