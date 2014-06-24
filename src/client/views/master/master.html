@@ -1,0 +1,8 @@
+<template name="master">
+  <p>{{currentQuestion}}</p>
+  {{#each currentAnswers}}
+    {{answer}}
+  {{/each}}
+  <button name="reset">Reset</button>
+  <button name="next-question">Next Question</button>
+</template>
