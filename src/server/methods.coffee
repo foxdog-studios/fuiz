@@ -38,6 +38,13 @@ Meteor.methods
       gameName: gameName
       questionId: question._id
       answer: answer
+    answers = Answers.find
+      gameName: gameName
+      questionId: question._id
+    players = Players.find
+      gameName: gameName
+    if answers.count() == players.count()
+      game.stop()
 
   'leave': withPlayerName (playerName) ->
     Player.leave playerName

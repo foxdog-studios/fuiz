@@ -1,8 +1,8 @@
 {
   "resetOnStart": false,
   "game": {
-    "questionTime": 3000,
-    "numberOfQuestions": 4
+    "questionTime": 8000,
+    "numberOfQuestions": 5
   },
   "public": {
     "rooms": {

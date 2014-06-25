@@ -16,6 +16,7 @@ class @Game
   @getCurrentChoices: ->
     game = Games.findOne()
     return [] unless (question = game?.question)
+    return [] unless game.timeLeft? or game.currentAnswer?
     letters = ['a', 'b', 'c']
     isCurrentAnswer = (answerIndex) ->
       answer = Game.currentAnswer()
