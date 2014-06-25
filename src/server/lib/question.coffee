@@ -2,9 +2,9 @@ class @Question
   @_getRandomFilm: (doc, excludeIds) ->
     doc._id =
       $nin: excludeIds
-    numberOfMatchingFilms = Films.find(doc).count()
+    numberOfMatchingFilms = Events.find(doc).count()
     skip = Math.floor(Math.random() * numberOfMatchingFilms)
-    Films.findOne doc, skip: skip
+    Events.findOne doc, skip: skip
 
   @_getThreeRandomFilmsWithDifferentYears: ->
     excludeIds = []

@@ -1,24 +1,15 @@
 Meteor.startup ->
   if Meteor.settings.resetOnStart
-    Films.remove {}
-  return if Films.find().count() > 0
-  csv = Meteor.require('fast-csv')
+    Events.remove {}
+    Directors.remove {}
+  return if Events.find().count() > 0
 
-  events = Assets.getText('events.csv')
+  # Meteor code must be run in fiber so do inserts after async code has run.
 
-  csvLines = []
-  Async.runSync (done) ->
-    csv
-      .fromString(events, headers: true)
-      .on 'record', (data) ->
-        csvLines.push data
-      .on 'end', ->
-        done()
-
-  # Cleaning up
-  cleanedCsvLines = _.map csvLines, (csvLine) ->
-    if csvLine['Year released'] != ''
-      csvLine.yearReleased = csvLine['Year released']
+  eventsCsv = Assets.getText('events.csv')
+  eventDocs = _.map CsvReader.getLinesFromString(eventsCsv), (csvLine) ->
+    # Cleaning up
+    csvLine.yearReleased = csvLine['Year released']
     delete csvLine['Year released']
     csvLine.isLive = if csvLine['Live?'] > 0 then true else false
     delete csvLine['Live?']
@@ -26,9 +17,35 @@ Meteor.startup ->
     delete csvLine['Preview?']
     csvLine.certificate = csvLine['Certificate']
     delete csvLine['Certificate']
+    csvLine._id = csvLine['ID']
+    delete csvLine['ID']
     csvLine
+  for eventDoc in eventDocs
+    Events.insert eventDoc
 
-  # Meteor code must be run in fiber so do inserts after async code has run.
-  for cleanedCsvLine in cleanedCsvLines
-    Films.insert cleanedCsvLine
+  directorsCsv = Assets.getText('directors.csv')
+  directorDocs = _.map CsvReader.getLinesFromString(directorsCsv), (csvLine) ->
+    csvLine.name = csvLine['Name']
+    delete csvLine['Name']
+    csvLine._id = csvLine['ID']
+    delete csvLine['ID']
+    csvLine
+  for directorDoc in directorDocs
+    Directors.insert directorDoc
+
+  eventDirectorsCsv = Assets.getText('event_directors.csv')
+  eventDirectorsCsvLines = CsvReader.getLinesFromString(eventDirectorsCsv)
+  for csvLine in eventDirectorsCsvLines
+    eventId = csvLine['Event ID']
+    directorId = csvLine['Director ID']
+    Events.update
+      _id: eventId
+    ,
+      $push:
+        directorIds: directorId
+    Directors.update
+      _id: directorId
+    ,
+      $push:
+        eventIds: eventId
 
