@@ -3,9 +3,9 @@
   {{#with currentQuestion}}
     <p>{{question}}</p>
     <ul>
-      <li>a: {{choices.a}} {{isCurrentAnswer 'a'}}</li>
-      <li>b: {{choices.b}} {{isCurrentAnswer 'b'}}</li>
-      <li>c: {{choices.c}} {{isCurrentAnswer 'c'}}</li>
+      {{#each choices}}
+        <li>{{letter}}: {{choice}} {{isCorrectAnswer}}</li>
+      {{/each}}
     </ul>
   {{/with}}
   <p>{{timeLeft}}</p>

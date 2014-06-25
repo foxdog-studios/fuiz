@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "iron-router": {},
-      "power-queue": {}
+      "power-queue": {},
+      "npm": {}
     },
     "packages": {
       "iron-router": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/CollectionFS/Meteor-power-queue.git",
         "tag": "v0.9.9",
         "commit": "567d3905784a8be6aacfbb69d477003ba9b5c4b5"
+      },
+      "npm": {
+        "git": "https://github.com/arunoda/meteor-npm.git",
+        "tag": "v0.2.6",
+        "commit": "177ab6118de5bf8cffb19481343d5762ff7a2aaf"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

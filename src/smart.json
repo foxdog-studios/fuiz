@@ -1,6 +1,7 @@
 {
   "packages": {
     "iron-router": {},
-    "power-queue": {}
+    "power-queue": {},
+    "npm": {}
   }
 }

@@ -4,22 +4,13 @@ Template.master.helpers
     game?.question
 
   choices: ->
-    game = Games.findOne()
-    return unless (question = game?.question)
-    question.choices
-
-  isCurrentAnswer: (choice) ->
-    return unless (answer = Game.currentAnswer())
-    if choice == answer
-      '✓'
-    else
-      '✗'
+    Game.getCurrentChoices()
 
   players: ->
     Players.find()
 
   answer: (playerId) ->
-    Player.currentAnswer(playerId)
+   ['a', 'b', 'c'][Player.currentAnswer(playerId)]
 
   playerIsCorrect: (playerId) ->
     playerAnswer = Player.currentAnswer(playerId)

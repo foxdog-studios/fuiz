@@ -15,9 +15,9 @@ class @Game
 
   _checkAnswers: ->
     correctAnswers = Answers.find
-      questionId: @_doc.question._id
-      answer: @_doc.question.answer
-    @_doc.currentAnswer = @_doc.question.answer
+      question: @_doc.question.question
+      answer: @_doc.question.answerIndex
+    @_doc.currentAnswer = @_doc.question.answerIndex
     correctAnswers.forEach (correctAnswer) =>
       Players.update
         playerId: correctAnswer.playerId
@@ -37,16 +37,10 @@ class @Game
   getQuestion: ->
     @_doc.question
 
-  _getAnUnaskedQuestion: ->
-    Questions.findOne
-      _id:
-        $nin: @_doc.questionsAskedIds
-
   nextQuestion: ->
     @_doc.startedAt = Date.now()
-    question = @_getAnUnaskedQuestion()
+    question = Question.getYearOfReleaseQuestion()
     return unless question?
-    @_doc.questionsAskedIds.push question._id
     @_doc.question = question
     @_doc.currentAnswer = null
     GAMES[@_doc.name] = Meteor.setInterval @_callback, @_interval
@@ -64,7 +58,6 @@ class @Game
       doc =
         createdAt: Date.now()
         name: name
-        questionsAskedIds: []
     new Game doc
 
   @reset: (name) ->
