@@ -1,0 +1,9 @@
+{
+  "public": {
+    "rooms": {
+      "enabled": false,
+      "default": "fuiz",
+      "random": false
+    }
+  }
+}

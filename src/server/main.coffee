@@ -3,7 +3,7 @@ Meteor.startup ->
     Games.remove {}
     Players.remove {}
     Answers.remove {}
-  Questions.remove {}
+    Questions.remove {}
   if Questions.find().count() == 0
     questions = [
       question: 'What was the budget for Ace Ventura: Pet Detective?'

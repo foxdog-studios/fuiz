@@ -1,0 +1,10 @@
+{
+  "resetOnStart": true,
+  "public": {
+    "rooms": {
+      "enabled": false,
+      "default": "fuiz",
+      "random": false
+    }
+  }
+}
