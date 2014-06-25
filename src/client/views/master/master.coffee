@@ -10,6 +10,12 @@ Template.master.helpers
     if Player.hasAnsweredCurrentQuestion(@playerId)
       'has answered'
 
+  correctClass: ->
+    if @isCorrectAnswer
+      'visible'
+    else
+      'hidden'
+
   players: ->
     Players.find()
 
@@ -24,15 +30,20 @@ Template.master.helpers
   isGameOver: ->
     Game.isGameOver()
 
-  playerIsCorrect: (playerId) ->
-    playerAnswer = Player.currentAnswer(playerId)
-    return unless playerAnswer?
-    currentAnswer = Game.currentAnswer()
-    return unless currentAnswer?
-    if playerAnswer == currentAnswer
+  playerIsCorrect: ->
+    hasCorrectAnswer = Player.hasCorrectAnswer(@playerId)
+    unless hasCorrectAnswer?
+      return
+    else if hasCorrectAnswer
       '✓'
     else
       '✗'
+
+  playerHasAnswerClass: ->
+    if Player.hasCorrectAnswer(@playerId)?
+      'visible'
+    else
+      'hidden'
 
   timeLeft: ->
     game = Games.findOne()

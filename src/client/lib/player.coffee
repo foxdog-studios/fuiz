@@ -17,3 +17,10 @@ class @Player
   @hasAnsweredCurrentQuestion: (playerId) ->
     Player._getPlayerAnswer(playerId)?
 
+  @hasCorrectAnswer: (playerId) ->
+    playerAnswer = Player.currentAnswer(playerId)
+    return unless playerAnswer?
+    currentAnswer = Game.currentAnswer()
+    return unless currentAnswer?
+    playerAnswer == currentAnswer
+

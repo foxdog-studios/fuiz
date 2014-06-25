@@ -19,13 +19,7 @@ class @Game
     return [] unless game.timeLeft? or game.currentAnswer?
     letters = ['a', 'b', 'c']
     isCurrentAnswer = (answerIndex) ->
-      answer = Game.currentAnswer()
-      unless answer?
-        return
-      else if answerIndex == answer
-        '✓'
-      else
-        '✗'
+      answerIndex == Game.currentAnswer()
     for choice, index in question.choices
       letter: letters[index]
       choice: choice

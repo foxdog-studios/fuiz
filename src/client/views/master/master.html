@@ -8,14 +8,14 @@
     <p>{{question}}</p>
     <ul>
       {{#each choices}}
-        <li>{{letter}}: {{choice}} {{isCorrectAnswer}}</li>
+      <li>{{letter}}: {{choice}} <span class="{{correctClass}}">✓</span></li>
       {{/each}}
     </ul>
   {{/with}}
   <p>{{timeLeft}}</p>
   <ul>
   {{#each players}}
-    <li>{{name}} {{hasAnsweredCurrentQuestion}} {{answer}} -- {{playerIsCorrect playerId}} {{score}}</li>
+    <li>{{name}} {{hasAnsweredCurrentQuestion}} {{answer}} -- <span class="{{playerHasAnswerClass}}">{{playerIsCorrect}}</span> {{score}}</li>
   {{/each}}
   </ul>
   <button name="reset">Reset</button>
