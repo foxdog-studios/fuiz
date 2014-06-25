@@ -2,9 +2,6 @@ Meteor.publish 'master', (gameName) ->
   check gameName, String
   gameCursor = Games.find
     name: gameName
-  ,
-    fields:
-      track: 0
   playerCursor = Players.find
     gameName: gameName
   ,

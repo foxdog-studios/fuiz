@@ -57,7 +57,8 @@ class @Question
     answerFilmIndex = Math.floor(Math.random() * films.length)
     answerFilm = films[answerFilmIndex]
     _id: Random.id()
-    question: "When was #{answerFilm.title} released?"
+    question: "was released in which year?"
+    keyWord: answerFilm.title
     choices: _.map films, (film) -> film.yearReleased
     answerIndex: answerFilmIndex
 
@@ -74,8 +75,8 @@ class @Question
     answerIndex = Math.floor(Math.random() * nonDirectorsFilms.length + 1)
     nonDirectorsFilms.splice(answerIndex, 0, directorsFilm)
     _id: Random.id()
-    question: "Which film did #{director.name} direct?"
+    question: "directed which one of these films?"
+    keyWord: director.name
     choices: _.map nonDirectorsFilms, (film) -> film.title
     answerIndex: answerIndex
-
 

@@ -1,23 +1,40 @@
 <template name="master">
-  <h1>Quiz</h1>
   {{#if isGameOver}}
-    <p>Game Over!</p>
+    <div class="game-over">
+      <p>Game Over!</p>
+    </div>
   {{/if}}
-  {{questionNumber}}
   {{#with currentQuestion}}
-    <p>{{question}}</p>
-    <ul>
+    <div class="question-box">
+      <p>{{questionNumber}}. <strong>{{keyWord}}</strong> {{question}}</p>
+    </div>
+    <div class="choices-box">
       {{#each choices}}
-      <li>{{letter}}: {{choice}} <span class="{{correctClass}}">✓</span></li>
+      <p>{{letter}}) {{choice}} <span class="{{correctClass}}">✓</span></p>
       {{/each}}
-    </ul>
+    </div>
   {{/with}}
-  <p>{{timeLeft}}</p>
-  <ul>
-  {{#each players}}
-    <li>{{name}} {{hasAnsweredCurrentQuestion}} {{answer}} -- <span class="{{playerHasAnswerClass}}">{{playerIsCorrect}}</span> {{score}}</li>
-  {{/each}}
-  </ul>
-  <button name="reset">Reset</button>
-  <button name="next-question">Next Question</button>
+  <div class="time-left">
+    <p>{{timeLeft}}</p>
+  </div>
+  <div class="clearfix"></div>
+  <div class="players">
+    {{#each players}}
+    <div class="player">
+      <p>{{score}}</p>
+      <p>{{name}}</p>
+      {{#if playerIsCorrect}}
+        {{answer}}
+      {{else}}
+        {{hasAnsweredCurrentQuestion}}
+      {{/if}}
+     <span class="{{playerHasAnswerClass}}">{{playerIsCorrect}}</span>
+    </div>
+    {{/each}}
+  </div>
+  <div class="clearfix"></div>
+  <div class="controls">
+    <button name="reset">Reset</button>
+    <button name="next-question">Next Question</button>
+  </div>
 </template>

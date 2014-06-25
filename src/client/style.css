@@ -1,3 +1,12 @@
+@font-face {
+  font-family: Munro;
+  src: url('/Munro.ttf');
+}
+
+body {
+  font-family: Serif;
+}
+
 .visible {
   visibility: visible;
   opacity: 1;
@@ -8,5 +17,69 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 1s, opacity 1s linear;
+}
+
+.question-box {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  padding: 5px;
+  font-size: 40px;
+  font-size: 4vw;
+}
+
+.choices-box {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+  font-size: 30px;
+  font-size: 3vw;
+}
+
+.time-left {
+  position: absolute;
+  top: 100px;
+  right: 0px;
+  padding: 10px;
+  font-size: 60px;
+  font-size: 6vw;
+}
+
+.players {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
+.player {
+  float: left;
+  max-width: 10%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 20px;
+  font-size: 2vw;
+  text-align: center;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 10;
+}
+
+.game-over {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  text-align: center;
+  font-size: 70px;
+  font-size: 7vw;
 }
 

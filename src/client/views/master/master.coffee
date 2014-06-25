@@ -8,7 +8,7 @@ Template.master.helpers
 
   hasAnsweredCurrentQuestion:  ->
     if Player.hasAnsweredCurrentQuestion(@playerId)
-      'has answered'
+      '-'
 
   correctClass: ->
     if @isCorrectAnswer
@@ -20,9 +20,7 @@ Template.master.helpers
     Players.find()
 
   answer: ->
-    answer = ['a', 'b', 'c'][Player.currentAnswer(@playerId)]
-    if answer?
-      "said #{answer}"
+    ['a', 'b', 'c'][Player.currentAnswer(@playerId)]
 
   questionNumber: ->
     Game.getQuestionNumber()
@@ -47,7 +45,9 @@ Template.master.helpers
 
   timeLeft: ->
     game = Games.findOne()
-    game?.timeLeft
+    return unless (timeLeft = game?.timeLeft)
+    "#{(timeLeft / 1000).toPrecision(2)}s"
+
 
 Template.master.events
   'click [name="reset"]': ->
