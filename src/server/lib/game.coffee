@@ -5,6 +5,7 @@ class @Game
     @_callback = => @_update()
     @_interval = 1000 / 10
     @_questionTime = 5000
+    @_numberOfQuestions = 3
 
   _update: ->
     if (timeSoFar = Date.now() - @_doc.startedAt) > @_questionTime
@@ -29,6 +30,8 @@ class @Game
   _stopUpdate: ->
     Meteor.clearInterval GAMES[@_doc.name]
     @_doc.timeLeft = null
+    if @_doc.numberOfQuestionsAsked >= @_numberOfQuestions
+      @_doc.gameOver = true
     @save()
     delete GAMES[@_doc.name]
 
@@ -39,11 +42,13 @@ class @Game
     @_doc.question
 
   nextQuestion: ->
+    return if @_doc.gameOver
     @_doc.startedAt = Date.now()
     question = Question.getYearOfReleaseQuestion()
     return unless question?
     @_doc.question = question
     @_doc.currentAnswer = null
+    @_doc.numberOfQuestionsAsked += 1
     GAMES[@_doc.name] = Meteor.setInterval @_callback, @_interval
     return
 
@@ -59,6 +64,7 @@ class @Game
       doc =
         createdAt: Date.now()
         name: name
+        numberOfQuestionsAsked: 0
     new Game doc
 
   @reset: (name) ->

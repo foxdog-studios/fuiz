@@ -3,6 +3,16 @@ class @Game
     game = Games.findOne()
     game?.currentAnswer
 
+  @isGameOver: ->
+    game = Games.findOne()
+    game?.gameOver
+
+  @getQuestionNumber: ->
+    game = Games.findOne()
+    numberOfQuestionsAsked = game?.numberOfQuestionsAsked
+    if numberOfQuestionsAsked > 0
+      numberOfQuestionsAsked
+
   @getCurrentChoices: ->
     game = Games.findOne()
     return [] unless (question = game?.question)

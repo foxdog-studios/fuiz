@@ -12,6 +12,12 @@ Template.master.helpers
   answer: (playerId) ->
    ['a', 'b', 'c'][Player.currentAnswer(playerId)]
 
+  questionNumber: ->
+    Game.getQuestionNumber()
+
+  isGameOver: ->
+    Game.isGameOver()
+
   playerIsCorrect: (playerId) ->
     playerAnswer = Player.currentAnswer(playerId)
     return unless playerAnswer?

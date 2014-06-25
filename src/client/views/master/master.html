@@ -1,5 +1,9 @@
 <template name="master">
   <h1>Quiz</h1>
+  {{#if isGameOver}}
+    <p>Game Over!</p>
+  {{/if}}
+  {{questionNumber}}
   {{#with currentQuestion}}
     <p>{{question}}</p>
     <ul>
