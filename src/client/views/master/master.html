@@ -15,7 +15,7 @@
   <p>{{timeLeft}}</p>
   <ul>
   {{#each players}}
-    <li>{{name}} says {{answer playerId}} -- {{playerIsCorrect playerId}} {{score}}</li>
+    <li>{{name}} {{hasAnsweredCurrentQuestion}} {{answer}} -- {{playerIsCorrect playerId}} {{score}}</li>
   {{/each}}
   </ul>
   <button name="reset">Reset</button>

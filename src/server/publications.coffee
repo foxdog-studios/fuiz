@@ -14,6 +14,9 @@ Meteor.publish 'master', (gameName) ->
       name: 1
   answersCursor = Answers.find
     gameName: gameName
+  ,
+    fields:
+      answer: 0
   [ gameCursor, playerCursor, answersCursor ]
 
 Meteor.publish 'playerName', ->

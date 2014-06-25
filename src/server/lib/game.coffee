@@ -17,16 +17,22 @@ class @Game
     @save()
 
   _checkAnswers: ->
-    correctAnswers = Answers.find
+    answers = Answers.find
       questionId: @_doc.question._id
-      answer: @_doc.question.answerIndex
-    @_doc.currentAnswer = @_doc.question.answerIndex
-    correctAnswers.forEach (correctAnswer) =>
+    answerIndex = @_doc.question.answerIndex
+    @_doc.currentAnswer = answerIndex
+    answers.forEach (answer) =>
+      inc = if answer.answer == answerIndex then 1 else 0
       Players.update
-        playerId: correctAnswer.playerId
+        playerId: answer.playerId
       ,
         $inc:
-          score: 1
+          score: inc
+      Answers.update
+        _id: answer._id
+      ,
+        $set:
+          publicAnswer: answer.answer
 
   stop: ->
     if @_doc.timeLeft?

@@ -6,11 +6,17 @@ Template.master.helpers
   choices: ->
     Game.getCurrentChoices()
 
+  hasAnsweredCurrentQuestion:  ->
+    if Player.hasAnsweredCurrentQuestion(@playerId)
+      'has answered'
+
   players: ->
     Players.find()
 
-  answer: (playerId) ->
-   ['a', 'b', 'c'][Player.currentAnswer(playerId)]
+  answer: ->
+    answer = ['a', 'b', 'c'][Player.currentAnswer(@playerId)]
+    if answer?
+      "said #{answer}"
 
   questionNumber: ->
     Game.getQuestionNumber()

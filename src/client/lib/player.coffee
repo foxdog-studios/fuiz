@@ -4,11 +4,16 @@ class @Player
       if error?
         console.error error
 
-  @currentAnswer: (playerId) ->
+  @_getPlayerAnswer: (playerId) ->
     game = Games.findOne()
     return unless (question = game?.question)
-    answer = Answers.findOne
+    Answers.findOne
       questionId: question._id
       playerId: playerId
-    answer?.answer
+
+  @currentAnswer: (playerId) ->
+    Player._getPlayerAnswer(playerId)?.publicAnswer
+
+  @hasAnsweredCurrentQuestion: (playerId) ->
+    Player._getPlayerAnswer(playerId)?
 
