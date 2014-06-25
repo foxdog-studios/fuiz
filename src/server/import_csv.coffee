@@ -15,7 +15,14 @@ Meteor.startup ->
       .on 'end', ->
         done()
 
+  # Cleaning up
+  cleanedCsvLines = _.map csvLines, (csvLine) ->
+    if csvLine.Year != ''
+      csvLine.year = csvLine.Year
+    delete csvLine.Year
+    csvLine
+
   # Meteor code must be run in fiber so do inserts after async code has run.
-  for csvLine in csvLines
-    Films.insert csvLine
+  for cleanedCsvLine in cleanedCsvLines
+    Films.insert cleanedCsvLine
 
