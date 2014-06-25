@@ -25,3 +25,9 @@ class @Game
       choice: choice
       isCorrectAnswer: isCurrentAnswer(index)
 
+  @inQuestion: ->
+    game = Games.findOne()
+    return unless game?
+    return unless game.question?
+    not game.currentAnswer?
+

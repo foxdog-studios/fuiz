@@ -23,18 +23,24 @@
     <div class="player">
       <p>{{score}}</p>
       <p>{{name}}</p>
+      <p>
       {{#if playerIsCorrect}}
         {{answer}}
       {{else}}
         {{hasAnsweredCurrentQuestion}}
       {{/if}}
-     <span class="{{playerHasAnswerClass}}">{{playerIsCorrect}}</span>
+      </p>
+      <p>
+       <span class="{{playerHasAnswerClass}}">{{playerIsCorrect}}</span>
+      </p>
     </div>
     {{/each}}
   </div>
   <div class="clearfix"></div>
   <div class="controls">
     <button name="reset">Reset</button>
-    <button name="next-question">Next Question</button>
+    {{#unless inQuestion}}
+      <button name="next-question">Next Question</button>
+    {{/unless}}
   </div>
 </template>

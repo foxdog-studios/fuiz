@@ -48,6 +48,9 @@ Template.master.helpers
     return unless (timeLeft = game?.timeLeft)
     "#{(timeLeft / 1000).toPrecision(2)}s"
 
+  inQuestion: ->
+    Game.inQuestion() and not Game.isGameOver()
+
 
 Template.master.events
   'click [name="reset"]': ->
