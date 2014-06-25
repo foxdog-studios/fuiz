@@ -9,7 +9,10 @@ Meteor.startup ->
   eventsCsv = Assets.getText('events.csv')
   eventDocs = _.map CsvReader.getLinesFromString(eventsCsv), (csvLine) ->
     # Cleaning up
-    csvLine.yearReleased = csvLine['Year released']
+    csvLine.title = csvLine.Title
+    delete csvLine.Title
+    if csvLine['Year released'] != ''
+      csvLine.yearReleased = csvLine['Year released']
     delete csvLine['Year released']
     csvLine.isLive = if csvLine['Live?'] > 0 then true else false
     delete csvLine['Live?']

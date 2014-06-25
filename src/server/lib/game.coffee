@@ -4,8 +4,8 @@ class @Game
   constructor: (@_doc) ->
     @_callback = => @_update()
     @_interval = 1000 / 10
-    @_questionTime = 5000
-    @_numberOfQuestions = 3
+    @_questionTime = Meteor.settings.game.questionTime
+    @_numberOfQuestions = Meteor.settings.game.numberOfQuestions
 
   _update: ->
     if (timeSoFar = Date.now() - @_doc.startedAt) > @_questionTime
@@ -17,7 +17,7 @@ class @Game
 
   _checkAnswers: ->
     correctAnswers = Answers.find
-      question: @_doc.question.question
+      questionId: @_doc.question._id
       answer: @_doc.question.answerIndex
     @_doc.currentAnswer = @_doc.question.answerIndex
     correctAnswers.forEach (correctAnswer) =>
@@ -44,7 +44,7 @@ class @Game
   nextQuestion: ->
     return if @_doc.gameOver
     @_doc.startedAt = Date.now()
-    question = Question.getYearOfReleaseQuestion()
+    question = Question.getRandomQuestion()
     return unless question?
     @_doc.question = question
     @_doc.currentAnswer = null

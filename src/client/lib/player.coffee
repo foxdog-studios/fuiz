@@ -8,7 +8,7 @@ class @Player
     game = Games.findOne()
     return unless (question = game?.question)
     answer = Answers.findOne
-      question: question.question
+      questionId: question._id
       playerId: playerId
     answer?.answer
 

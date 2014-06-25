@@ -1,5 +1,9 @@
 {
-  "resetOnStart": true,
+  "resetOnStart": false,
+  "game": {
+    "questionTime": 3000,
+    "numberOfQuestions": 4
+  },
   "public": {
     "rooms": {
       "enabled": false,

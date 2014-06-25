@@ -31,12 +31,12 @@ Meteor.methods
     currentAnswer = Answers.findOne
       playerId: playerId
       gameName: gameName
-      question: question.question
+      questionId: question._id
     return if currentAnswer?
     Answers.insert
       playerId: playerId
       gameName: gameName
-      question: question.question
+      questionId: question._id
       answer: answer
 
   'leave': withPlayerName (playerName) ->
