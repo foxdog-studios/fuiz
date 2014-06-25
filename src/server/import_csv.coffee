@@ -20,6 +20,12 @@ Meteor.startup ->
     if csvLine['Year released'] != ''
       csvLine.yearReleased = csvLine['Year released']
     delete csvLine['Year released']
+    csvLine.isLive = if csvLine['Live?'] > 0 then true else false
+    delete csvLine['Live?']
+    csvLine.isPreview = if csvLine['Preview?'] > 0 then true else false
+    delete csvLine['Preview?']
+    csvLine.certificate = csvLine['Certificate']
+    delete csvLine['Certificate']
     csvLine
 
   # Meteor code must be run in fiber so do inserts after async code has run.

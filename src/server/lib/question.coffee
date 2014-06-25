@@ -15,6 +15,10 @@ class @Question
         yearReleased:
           $exists: true
           $nin: previousYears
+        isLive: false
+        isPreview: false
+        certificate:
+          $exists: true
       ,
         excludeIds
       films.push film
