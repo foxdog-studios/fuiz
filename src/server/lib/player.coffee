@@ -21,6 +21,7 @@ class @Player
       doc =
         playerId: playerId
         name: generateName()
+        score: 0
     new Player doc
 
   @leave: (playerId) ->

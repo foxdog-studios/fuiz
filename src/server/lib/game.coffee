@@ -9,7 +9,8 @@ class @Game
   _update: ->
     if (timeSoFar = Date.now() - @_doc.startedAt) > @_questionTime
       @_checkAnswers()
-      return @_stopUpdate()
+      @_stopUpdate()
+      return
     @_doc.timeLeft = @_questionTime - timeSoFar
     @save()
 

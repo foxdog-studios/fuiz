@@ -12,14 +12,14 @@ class @Question
     films = []
     for i in [0..2]
       film = @_getRandomFilm
-        year:
+        yearReleased:
           $exists: true
           $nin: previousYears
       ,
         excludeIds
       films.push film
       excludeIds.push film._id
-      previousYears.push film.year
+      previousYears.push film.yearReleased
     films
 
   @getYearOfReleaseQuestion: ->
@@ -27,6 +27,6 @@ class @Question
     answerFilmIndex = Math.floor(Math.random() * films.length)
     answerFilm = films[answerFilmIndex]
     question: "When was #{answerFilm.Title} released?"
-    choices: _.map films, (film) -> film.year
+    choices: _.map films, (film) -> film.yearReleased
     answerIndex: answerFilmIndex
 

@@ -4,12 +4,12 @@ Meteor.startup ->
   return if Films.find().count() > 0
   csv = Meteor.require('fast-csv')
 
-  films = Assets.getText('films.csv')
+  events = Assets.getText('events.csv')
 
   csvLines = []
   Async.runSync (done) ->
     csv
-      .fromString(films, headers: true)
+      .fromString(events, headers: true)
       .on 'record', (data) ->
         csvLines.push data
       .on 'end', ->
@@ -17,9 +17,9 @@ Meteor.startup ->
 
   # Cleaning up
   cleanedCsvLines = _.map csvLines, (csvLine) ->
-    if csvLine.Year != ''
-      csvLine.year = csvLine.Year
-    delete csvLine.Year
+    if csvLine['Year released'] != ''
+      csvLine.yearReleased = csvLine['Year released']
+    delete csvLine['Year released']
     csvLine
 
   # Meteor code must be run in fiber so do inserts after async code has run.
