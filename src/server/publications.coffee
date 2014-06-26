@@ -47,5 +47,6 @@ Meteor.publish 'player', (gameName)->
       name: 1
       gameName: 1
       playerId: 1
+      currentAnswer: 1
   [ gameCursor, playerCursor ]
 

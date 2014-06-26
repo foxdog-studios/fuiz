@@ -28,6 +28,8 @@ class @Game
       ,
         $inc:
           score: inc
+        $set:
+          currentAnswer: null
       Answers.update
         _id: answer._id
       ,

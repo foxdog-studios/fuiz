@@ -43,6 +43,11 @@ Meteor.methods
     answers = Answers.find
       gameName: gameName
       questionId: question._id
+    Players.update
+      playerId: playerId
+    ,
+      $set:
+        currentAnswer: answer
     players = Players.find
       gameName: gameName
     if answers.count() == players.count()
