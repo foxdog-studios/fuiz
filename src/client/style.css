@@ -189,10 +189,17 @@ body {
   background-color: #FF6B6B;
 }
 
-.quiz-button {
+.quiz-button,
+.quiz-button:active {
   font-size: 40px;
   font-size: 4vw;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.quiz-button:active {
+  color: #F9DA10;
 }
 
