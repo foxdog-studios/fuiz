@@ -10,11 +10,28 @@
   {{/if}}
   {{#with currentQuestion}}
     <div class="question-box">
-      <p>{{questionNumber}}. <strong>{{keyWord}}</strong> {{question}}</p>
+      <div>
+        <div class="question-number">
+          {{questionNumber}}.
+        </div>
+        <div class="question">
+          <strong>{{keyWord}}</strong> {{question}}
+        </div>
+      </div>
     </div>
     <div class="choices-box">
       {{#each choices}}
-      <p>{{letter}}) {{choice}} <span class="{{correctClass}}">✓</span></p>
+      <div>
+        <div class="choice-letter-wrapper">
+          <div class="choice-letter {{letter}}">
+            {{letter}}
+          </div>
+        </div>
+        <div class="choice">
+          {{choice}} <span class="{{correctClass}}">✓</span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
       {{/each}}
     </div>
   {{/with}}

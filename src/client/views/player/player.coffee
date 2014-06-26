@@ -3,12 +3,12 @@ Template.player.helpers
     Players.findOne()
 
 Template.player.events
-  'click [name="a"]': (event) ->
+  'touchend [name="a"]': (event) ->
     Player.chooseAnswer @roomName, 0
 
-  'click [name="b"]': (event) ->
+  'touchend [name="b"]': (event) ->
     Player.chooseAnswer @roomName, 1
 
-  'click [name="c"]': (event) ->
+  'touchend [name="c"]': (event) ->
     Player.chooseAnswer @roomName, 2
 

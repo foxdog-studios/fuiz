@@ -49,21 +49,57 @@ body {
 .question-box {
   position: absolute;
   top: 0px;
-  width: 100%;
   padding: 5px;
-  font-size: 40px;
-  font-size: 4vw;
+  font-size: 50px;
+  font-size: 5vw;
+  width: 100%;
+}
+
+.question-number {
+  float: left;
+  height: 140px;
+  width: 10%;
+  padding: 5px;
+}
+
+.question {
+  float: left;
+  width: 90%;
+  padding: 5px;
 }
 
 .choices-box {
   position: absolute;
-  top: 100px;
+  top: 180px;
   left: 0px;
   width: 100%;
   padding: 5px;
   margin-top: 10px;
-  font-size: 30px;
-  font-size: 3vw;
+  font-size: 40px;
+  font-size: 4vw;
+}
+
+.choice-letter-wrapper {
+  float: left;
+  width: 10%;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.choice-letter {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+}
+
+.choice-letter .a {
+
+}
+
+.choice {
+  float: left;
+  width: 90%;
 }
 
 .time-left {
@@ -127,17 +163,26 @@ body {
 
 [name="a"] {
   top: 0px;
-  background-color: #4ECDC4;
 }
 
 [name="b"] {
   top: 33%;
-  background-color: #C7F464;
 }
 
 [name="c"] {
   top: 66%;
-  background-color: #FF6B6B;
   height: 34%;
+}
+
+.choice-letter.a, [name="a"] {
+  background-color: #4ECDC4;
+}
+
+.choice-letter.b, [name="b"] {
+  background-color: #C7F464;
+}
+
+.choice-letter.c, [name="c"] {
+  background-color: #FF6B6B;
 }
 
