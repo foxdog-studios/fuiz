@@ -57,7 +57,7 @@ body {
 
 .question-number {
   float: left;
-  height: 140px;
+  height: 15vw;
   width: 10%;
   padding: 5px;
 }
@@ -70,7 +70,7 @@ body {
 
 .choices-box {
   position: absolute;
-  top: 180px;
+  top: 15vw;
   left: 0px;
   width: 100%;
   padding: 5px;
@@ -88,8 +88,8 @@ body {
 
 .choice-letter {
   display: inline-block;
-  width: 60px;
-  height: 60px;
+  width: 6vw;
+  height: 6vw;
   text-align: center;
 }
 
