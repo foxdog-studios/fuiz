@@ -56,16 +56,27 @@ class @Question
       previousYears.push film.yearReleased
     films
 
-  @_getRandomFilms: (doc, amount) ->
+  @_getRandomItems: (doc, amount, randomItemGetter) ->
     excludeIds = []
-    films = []
+    items = []
     for i in [0...amount]
       queryDoc = _.clone doc
-      queryDoc._id = $nin: excludeIds
-      film = Question._getRandomFilm queryDoc
-      films.push film
-      excludeIds.push film._id
-    films
+      unless queryDoc._id?
+        queryDoc._id = {}
+      unless queryDoc._id.$nin?
+        queryDoc._id.$nin = excludeIds
+      else
+        queryDoc._id.$nin = queryDoc._id.$nin.concat(excludeIds)
+      item = randomItemGetter queryDoc
+      items.push item
+      excludeIds.push item._id
+    items
+
+  @_getRandomFilms: (doc, amount) ->
+    Question._getRandomItems(doc, amount, Question._getRandomFilm)
+
+  @_getRandomDirectors: (doc, amount) ->
+    Question._getRandomItems(doc, amount, Question._getRandomDirector)
 
   @getRandomQuestion: ->
     questionFunc = Random.choice [
@@ -90,16 +101,17 @@ class @Question
     directorsFilm = Question._getRandomFilm
       directorIds:
         $in: [director._id]
-    nonDirectorsFilms = Question._getRandomFilms
-      directorIds:
+    otherDirectors = Question._getRandomDirectors
+      _id:
         $nin: [director._id]
     ,
       2
-    answerIndex = Math.floor(Math.random() * nonDirectorsFilms.length + 1)
-    nonDirectorsFilms.splice(answerIndex, 0, directorsFilm)
+    answerIndex = Math.floor(Math.random() * otherDirectors.length + 1)
+    otherDirectors.splice(answerIndex, 0, director)
     _id: Random.id()
-    question: "directed which one of these films?"
-    keyWord: director.name
-    choices: _.map nonDirectorsFilms, (film) -> film.title
+    question: "was directed by?"
+    keyWord: directorsFilm.title
+    choices: _.map otherDirectors, (director) -> director.name
     answerIndex: answerIndex
+    theMovieDbData: directorsFilm.theMovieDbData
 

@@ -29,6 +29,7 @@ body {
   background-color: #2F2727;
   background-image: url(/cornerhouse.jpg);
   background-attachment: fixed;
+  background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -137,14 +138,16 @@ body {
 
 .game-over {
   position: absolute;
-  top: 50%;
-  bottom: 50%;
-  left: 0px;
-  right: 0px;
-  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
   font-size: 70px;
   font-size: 7vw;
+  margin: auto;
+  display: table;
+  width: 100%;
 }
 
 .player-name {
