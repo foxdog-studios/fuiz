@@ -1,4 +1,11 @@
 Template.master.rendered = ->
+  $(window).keydown (event) =>
+    switch event.keyCode
+      when KeyCodes.R
+        Meteor.call 'resetGame', @data.roomName, (error, result) ->
+          if error?
+            console.error error
+
   @_lastPosterPath = null
   Deps.autorun =>
     game = Games.findOne()

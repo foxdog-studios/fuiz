@@ -3,6 +3,9 @@
     "iron-router": {},
     "power-queue": {},
     "npm": {},
-    "bootstrap-3": {}
+    "bootstrap-3": {},
+    "keycodes": {
+      "git": "https://github.com/foxdog-studios/meteor-keycodes"
+    }
   }
 }

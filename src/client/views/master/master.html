@@ -59,9 +59,12 @@
   </div>
   <div class="clearfix"></div>
   <div class="controls">
-    <button name="reset">Reset</button>
-    {{#unless inQuestion}}
-      <button name="next-question">Next Question</button>
-    {{/unless}}
+    {{#if isGameOver}}
+      <button class="quiz-button" name="reset">Reset</button>
+    {{else}}
+      {{#unless inQuestion}}
+        <button class="quiz-button" name="next-question">Next Question &gt;</button>
+      {{/unless}}
+    {{/if}}
   </div>
 </template>

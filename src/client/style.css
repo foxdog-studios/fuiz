@@ -186,3 +186,10 @@ body {
   background-color: #FF6B6B;
 }
 
+.quiz-button {
+  font-size: 40px;
+  font-size: 4vw;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
