@@ -1,5 +1,9 @@
 class @CsvReader
-  @getLinesFromString: (string) ->
+  @getLinesFromAsset: (assetName) ->
+    csv = Assets.getText(assetName)
+    CsvReader._getLinesFromString(csv)
+
+  @_getLinesFromString: (string) ->
     csv = Meteor.require('fast-csv')
     csvLines = []
     Async.runSync (done) ->

@@ -6,8 +6,30 @@ class @Question
     skip = Math.floor(Math.random() * numberOfMatchingDocs)
     collection.findOne doc, skip: skip
 
+  @_ensureFilmHasTMDBDataIfPossible: (film) ->
+    return film unless film.theMovieDbId?
+    return film if film.theMovieDbData?
+    apiKey = Meteor.settings.theMovieDbApiKey
+    movieId = film.theMovieDbId
+    try
+      theMovieDbData = HTTP.get(
+        "http://api.themoviedb.org/3/movie/#{movieId}?api_key=#{apiKey}"
+      )
+      Events.update
+        _id: film._id
+      ,
+        $set:
+          theMovieDbData: theMovieDbData.data
+      film.theMovieDbData = theMovieDbData.data
+      return film
+    catch e
+      console.error("Error fetching the movie db data", e)
+      return film
+
   @_getRandomFilm: (doc) ->
-    Question._getRandomDocFromCollection(doc, Events)
+    film = Question._getRandomDocFromCollection(doc, Events)
+    film = Question._ensureFilmHasTMDBDataIfPossible(film)
+    film
 
   @_getRandomDirector: (doc) ->
     Question._getRandomDocFromCollection(doc, Directors)
@@ -61,6 +83,7 @@ class @Question
     keyWord: answerFilm.title
     choices: _.map films, (film) -> film.yearReleased
     answerIndex: answerFilmIndex
+    theMovieDbData: answerFilm.theMovieDbData
 
   @getWhatFilmDidThisDirectorDirect: ->
     director = Question._getRandomDirector()

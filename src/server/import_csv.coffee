@@ -6,8 +6,7 @@ Meteor.startup ->
 
   # Meteor code must be run in fiber so do inserts after async code has run.
 
-  eventsCsv = Assets.getText('events.csv')
-  eventDocs = _.map CsvReader.getLinesFromString(eventsCsv), (csvLine) ->
+  eventDocs = _.map CsvReader.getLinesFromAsset('events.csv'), (csvLine) ->
     # Cleaning up
     csvLine.title = csvLine.Title
     delete csvLine.Title
@@ -26,8 +25,7 @@ Meteor.startup ->
   for eventDoc in eventDocs
     Events.insert eventDoc
 
-  directorsCsv = Assets.getText('directors.csv')
-  directorDocs = _.map CsvReader.getLinesFromString(directorsCsv), (csvLine) ->
+  directorDocs = _.map CsvReader.getLinesFromAsset('directors.csv'), (csvLine) ->
     csvLine.name = csvLine['Name']
     delete csvLine['Name']
     csvLine._id = csvLine['ID']
@@ -36,8 +34,7 @@ Meteor.startup ->
   for directorDoc in directorDocs
     Directors.insert directorDoc
 
-  eventDirectorsCsv = Assets.getText('event_directors.csv')
-  eventDirectorsCsvLines = CsvReader.getLinesFromString(eventDirectorsCsv)
+  eventDirectorsCsvLines = CsvReader.getLinesFromAsset('event_directors.csv')
   for csvLine in eventDirectorsCsvLines
     eventId = csvLine['Event ID']
     directorId = csvLine['Director ID']
@@ -51,4 +48,15 @@ Meteor.startup ->
     ,
       $push:
         eventIds: eventId
+
+  movieDbCsvLines = CsvReader.getLinesFromAsset('moviedblinks.csv')
+  for csvLine in movieDbCsvLines
+    eventId = csvLine.ID
+    theMovieDbId = csvLine.tmdb_id
+    continue if not theMovieDbId? or theMovieDbId == ''
+    Events.update
+      _id: eventId
+    ,
+      $set:
+        theMovieDbId: theMovieDbId
 
