@@ -74,7 +74,7 @@ class @Game
     return
 
   isInQuestion: ->
-    GAMES[@_doc.name]?
+    GAMES[@_doc.name]? or TIMEOUTS[@_doc.name]?
 
   save: ->
     Games.upsert name: @_doc.name, @_doc

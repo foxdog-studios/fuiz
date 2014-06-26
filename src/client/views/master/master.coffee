@@ -10,15 +10,18 @@ Template.master.rendered = ->
   Deps.autorun =>
     game = Games.findOne()
     return unless (question = game?.question)
-    unless (posterPath = game?.question?.theMovieDbData?.poster_path)
+    imagePath = game?.question?.theMovieDbData?.backdrop_path
+    unless imagePath?
+      imagePath = game?.question?.theMovieDbData?.poster_path
+    unless imagePath?
       return unless @_lastPosterPath != null
       @_lastPosterPath = null
       $('#darken').fadeTo(400, 1, ->
         $('#image').css('background-image', '')
       ).fadeTo(400, 0.5)
       return
-    if posterPath != @_lastPosterPath
-      @_lastPosterPath = posterPath
+    if imagePath != @_lastPosterPath
+      @_lastPosterPath = imagePath
     else
       return
     image = new Image
@@ -29,7 +32,7 @@ Template.master.rendered = ->
           "url(#{image.src})"
         )
       ).fadeTo(200, 0.5)
-    image.src = "http://image.tmdb.org/t/p/w1000/#{posterPath}"
+    image.src = "http://image.tmdb.org/t/p/w1000/#{@_lastPosterPath}"
 
 Template.master.helpers
   currentQuestion: ->

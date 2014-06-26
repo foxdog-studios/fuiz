@@ -18,8 +18,10 @@ Meteor.methods
   'nextQuestion': (gameName) ->
     game = Game.get(gameName)
     return if game.isInQuestion()
-    game.nextQuestion()
-    game.save()
+    queue.add (done) ->
+      game.nextQuestion()
+      game.save()
+      done()
 
   'chooseAnswer': withPlayerName (playerId, gameName, answer) ->
     check playerId, String
