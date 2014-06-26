@@ -5,6 +5,7 @@
     "numberOfQuestions": 5
   },
   "public": {
+    "theMovieDbApiKey": "0ba13efca095f8b915458f13f11be6b3",
     "rooms": {
       "enabled": false,
       "default": "fuiz",

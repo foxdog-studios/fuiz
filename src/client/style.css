@@ -5,6 +5,12 @@
 
 body {
   font-family: Munro;
+  color: #fff;
+  text-shadow:
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }
 
 .visible {
@@ -17,6 +23,41 @@ body {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 1s, opacity 1s linear;
+}
+
+#image {
+  background-color: #2F2727;
+  background-image: url(images/radial_bg.png);
+  background-position: center center;
+
+  /* Safari 4-5, Chrome 1-9 */
+  /* Can't specify a percentage size? Laaaaaame. */
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#1a82f7), to(#2F2727));
+
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-radial-gradient(circle, #1a82f7, #2F2727);
+
+  /* Firefox 3.6+ */
+  background: -moz-radial-gradient(circle, #1a82f7, #2F2727);
+
+  /* IE 10 */
+  background: -ms-radial-gradient(circle, #1a82f7, #2F2727);
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+#darken {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 1);
 }
 
 .question-box {
@@ -82,5 +123,35 @@ body {
   text-align: center;
   font-size: 70px;
   font-size: 7vw;
+}
+
+.player-name {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.player-button {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  right: 0px;
+  height: 33%;
+}
+
+[name="a"] {
+  top: 0px;
+  background-color: #4ECDC4;
+}
+
+[name="b"] {
+  top: 33%;
+  background-color: #C7F464;
+}
+
+[name="c"] {
+  top: 66%;
+  background-color: #FF6B6B;
+  height: 34%;
 }
 

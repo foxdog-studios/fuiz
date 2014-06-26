@@ -1,3 +1,14 @@
+Template.master.rendered = ->
+  image = new Image
+  image.onload = ->
+    $('#darken').fadeTo(400, 1, ->
+      $('#image').css(
+        'background-image',
+        "url(#{image.src})"
+      )
+    ).fadeTo(400, 0.5)
+  image.src = 'http://image.tmdb.org/t/p/w1000/msfyV01zy5dxy4JlXCpEVFRXwGO.jpg'
+
 Template.master.helpers
   currentQuestion: ->
     game = Games.findOne()
