@@ -94,13 +94,18 @@ body {
   text-align: center;
 }
 
-.choice-letter .a {
-
-}
-
 .choice {
   float: left;
   width: 90%;
+}
+
+.choice-wrapper {
+  opacity: 1;
+}
+
+.choice-wrapper.wrong {
+  opacity: 0.4;
+  transition: opacity 0.4s ease-out;
 }
 
 .time-left {
@@ -127,6 +132,26 @@ body {
   font-size: 20px;
   font-size: 2vw;
   text-align: center;
+  opacity: 1;
+  transition: border 0.4s ease-out, opacity 0.4s ease-out;
+  border: 5px solid rgba(0, 0, 0, 0);
+}
+
+.player.answered {
+  border: 5px solid #F9DA10;
+}
+
+.player.correct {
+  border: 5px solid #58FF4D;
+}
+
+.player.wrong {
+  border: 5px solid #FF4D58;
+  opacity: 0.4;
+}
+
+.player.unanswered {
+  opacity: 0.4;
 }
 
 .controls {

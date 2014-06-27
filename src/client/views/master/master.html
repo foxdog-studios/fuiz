@@ -21,14 +21,14 @@
     </div>
     <div class="choices-box">
       {{#each choices}}
-      <div>
+      <div class="choice-wrapper {{correctChoice}}">
         <div class="choice-letter-wrapper">
           <div class="choice-letter {{letter}}">
             {{letter}}
           </div>
         </div>
         <div class="choice">
-          {{choice}} <span class="{{correctClass}}">✓</span>
+          {{choice}}
         </div>
       </div>
       <div class="clearfix"></div>
@@ -46,18 +46,13 @@
   <div class="clearfix"></div>
   <div class="players">
     {{#each players}}
-    <div class="player">
+    <div class="player {{playerState}}">
       <p>{{score}}</p>
       <p>{{name}}</p>
       <p>
       {{#if playerIsCorrect}}
         {{answer}}
-      {{else}}
-        {{hasAnsweredCurrentQuestion}}
       {{/if}}
-      </p>
-      <p>
-       <span class="{{playerHasAnswerClass}}">{{playerIsCorrect}}</span>
       </p>
     </div>
     {{/each}}

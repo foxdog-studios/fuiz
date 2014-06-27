@@ -19,7 +19,9 @@ class @Game
     return [] unless game.timeLeft? or game.currentAnswer?
     letters = ['a', 'b', 'c']
     isCurrentAnswer = (answerIndex) ->
-      answerIndex == Game.currentAnswer()
+      currentAnswer = Game.currentAnswer()
+      return unless currentAnswer?
+      answerIndex == currentAnswer
     for choice, index in question.choices
       letter: letters[index]
       choice: choice
