@@ -219,12 +219,17 @@ body {
   transition-delay: 4s;
 }
 
+.reset,
 .controls {
   position: absolute;
-  bottom: 0px;
   right: 0px;
   z-index: 10;
 }
+
+.controls {
+  bottom: 0px;
+}
+
 
 .intro,
 .game-over {
@@ -355,6 +360,11 @@ body {
   border: none;
   -webkit-appearance: none;
   outline: none;
+}
+
+.reset-button,
+.reset-button:active {
+  font-size: 2vw;
 }
 
 .quiz-button:active {

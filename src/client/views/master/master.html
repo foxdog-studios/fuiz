@@ -67,13 +67,12 @@
     {{/each}}
   </div>
   <div class="clearfix"></div>
+  <div class="reset">
+    <button class="quiz-button reset-button" name="reset">&lt;</button>
+  </div>
   <div class="controls">
-    {{#if isGameOver}}
-      <button class="quiz-button" name="reset">Reset</button>
-    {{else}}
-      {{#unless inQuestion}}
-        <button class="quiz-button" name="next-question">Next Question &gt;</button>
-      {{/unless}}
-    {{/if}}
+    {{#unless inQuestion}}
+      <button class="quiz-button next-question-button" name="next-question">Next Question ►</button>
+    {{/unless}}
   </div>
 </template>
