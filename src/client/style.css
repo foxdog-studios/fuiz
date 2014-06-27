@@ -51,6 +51,45 @@ body {
 
 #game-over-darken {
   z-index: 2;
+  -webkit-animation: darken-fadein 10s; /* Safari and Chrome */
+     -moz-animation: darken-fadein 10s; /* Firefox */
+      -ms-animation: darken-fadein 10s; /* Internet Explorer */
+       -o-animation: darken-fadein 10s; /* Opera */
+          animation: darken-fadein 10s;
+}
+
+@keyframes darken-fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100% { opacity: 0.7; }
+}
+
+/* Firefox */
+@-moz-keyframes darken-fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100%   { opacity: 0.7; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes darken-fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100%   { opacity: 0.7; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes darken-fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100%   { opacity: 0.7; }
+}
+
+/* Opera */
+@-o-keyframes darken-fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100%   { opacity: 0.7; }
 }
 
 .question-box {
@@ -202,7 +241,48 @@ body {
   display: table;
   width: 100%;
   z-index: 3;
+
+  -webkit-animation: fadein 10s; /* Safari and Chrome */
+     -moz-animation: fadein 10s; /* Firefox */
+      -ms-animation: fadein 10s; /* Internet Explorer */
+       -o-animation: fadein 10s; /* Opera */
+          animation: fadein 10s;
 }
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Firefox */
+@-moz-keyframes fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+
+/* Opera */
+@-o-keyframes fadein {
+    0% { opacity: 0; }
+    80% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+
 
 .player-info {
   position: absolute;
