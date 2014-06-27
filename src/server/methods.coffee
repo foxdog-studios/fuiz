@@ -28,7 +28,7 @@ Meteor.methods
     check gameName, String
     check answer, Number
     game = Game.get(gameName)
-    return unless game?.isInQuestion()
+    return unless game?.countDownStarted()
     return unless (question = game?.getQuestion())
     currentAnswer = Answers.findOne
       playerId: playerId

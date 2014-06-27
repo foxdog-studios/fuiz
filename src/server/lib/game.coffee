@@ -78,6 +78,9 @@ class @Game
   isInQuestion: ->
     GAMES[@_doc.name]? or TIMEOUTS[@_doc.name]?
 
+  countDownStarted: ->
+    GAMES[@_doc.name]?
+
   save: ->
     Games.upsert name: @_doc.name, @_doc
     return
