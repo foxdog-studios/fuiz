@@ -42,6 +42,12 @@ Template.master.helpers
   choices: ->
     Game.getCurrentChoices()
 
+  playersUrl: ->
+    playerPath = Router.path('player', roomName: @roomName)
+    if playerPath == '/'
+      playerPath = ''
+    "#{window.location.host}#{playerPath}"
+
   playerState: ->
     hasCorrectAnswer = Player.hasCorrectAnswer(@playerId)
     if hasCorrectAnswer?
