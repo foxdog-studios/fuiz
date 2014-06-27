@@ -70,13 +70,20 @@ Template.master.helpers
   questionNumber: ->
     Game.getQuestionNumber()
 
+  totalNumberOfQuestions: ->
+    Meteor.settings.public.game.numberOfQuestions
+
   isGameOver: ->
     Game.isGameOver()
 
   timeLeft: ->
-    game = Games.findOne()
-    return unless (timeLeft = game?.timeLeft)
+    return unless (timeLeft = Game.timeLeft())
     "#{(timeLeft / 1000).toPrecision(2)}s"
+
+  timerPercent: ->
+    unless (timeLeft = Game.timeLeft())
+      return 0
+    (timeLeft / Meteor.settings.public.game.questionTime) * 100
 
   inQuestion: ->
     Game.inQuestion() and not Game.isGameOver()

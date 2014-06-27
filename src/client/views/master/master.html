@@ -12,7 +12,7 @@
     <div class="question-box">
       <div>
         <div class="question-number">
-          {{questionNumber}}.
+          {{questionNumber}}/{{totalNumberOfQuestions}}
         </div>
         <div class="question">
           <strong>{{keyWord}}</strong> {{question}}
@@ -41,6 +41,8 @@
     </div>
   {{/with}}
   <div class="time-left">
+    <div class="timer" style="height: {{timerPercent}}%;">
+    </div>
     <p>{{timeLeft}}</p>
   </div>
   <div class="clearfix"></div>

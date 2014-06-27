@@ -118,11 +118,20 @@ body {
 
 .time-left {
   position: absolute;
-  top: 100px;
+  top: 10vh;
   right: 0px;
   padding: 10px;
   font-size: 60px;
   font-size: 6vw;
+  text-align: right;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.timer {
+  width: 3vw;
+  background-color: #fff;
+  float: right;
 }
 
 .players {

@@ -43,3 +43,7 @@ class @Game
       if error?
         console.error error
 
+  @timeLeft: ->
+    game = Games.findOne()
+    game?.timeLeft
+

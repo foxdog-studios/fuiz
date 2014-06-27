@@ -5,8 +5,8 @@ class @Game
   constructor: (@_doc) ->
     @_callback = => @_update()
     @_interval = 1000 / 10
-    @_questionTime = Meteor.settings.game.questionTime
-    @_numberOfQuestions = Meteor.settings.game.numberOfQuestions
+    @_questionTime = Meteor.settings.public.game.questionTime
+    @_numberOfQuestions = Meteor.settings.public.game.numberOfQuestions
 
   _update: ->
     if (timeSoFar = Date.now() - @_doc.startedAt) > @_questionTime
