@@ -4,8 +4,11 @@ Template.player.helpers
 
   selected: (index) ->
     return unless (player = Players.findOne())
+    return unless player.currentAnswer?
     if player.currentAnswer == index
       return 'selected'
+    else
+      'not-selected'
 
 
 Template.player.events

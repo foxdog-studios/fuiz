@@ -11,6 +11,7 @@ body {
     1px -1px 0 #000,
     -1px 1px 0 #000,
      1px 1px 0 #000;
+  background-color: #000;
 }
 
 .visible {
@@ -194,6 +195,12 @@ body {
   left: 0px;
   right: 0px;
   height: 33%;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+.player-button.not-selected {
+  opacity: 0.4;
 }
 
 .selected {
