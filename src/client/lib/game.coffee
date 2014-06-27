@@ -31,3 +31,13 @@ class @Game
     return unless game.question?
     not game.currentAnswer?
 
+  @resetGame: (roomName) ->
+    Meteor.call 'resetGame', roomName, (error, result) ->
+      if error?
+        console.error error
+
+  @nextQuestion: (roomName) ->
+    Meteor.call 'nextQuestion', roomName, (error, result) ->
+      if error?
+        console.error error
+

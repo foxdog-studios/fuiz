@@ -2,9 +2,9 @@ Template.master.rendered = ->
   $(window).keydown (event) =>
     switch event.keyCode
       when KeyCodes.R
-        Meteor.call 'resetGame', @data.roomName, (error, result) ->
-          if error?
-            console.error error
+        Game.resetGame(@data.roomName)
+      when KeyCodes.RIGHT_ARROW
+        Game.nextQuestion(@data.roomName)
 
   @_lastPosterPath = null
   Deps.autorun =>
@@ -90,12 +90,8 @@ Template.master.helpers
 
 Template.master.events
   'click [name="reset"]': ->
-    Meteor.call 'resetGame', @roomName, (error, result) ->
-      if error?
-        console.error error
+    Game.resetGame(@roomName)
 
   'click [name="next-question"]': ->
-    Meteor.call 'nextQuestion', @roomName, (error, result) ->
-      if error?
-        console.error error
+    Game.nextQuestion(@roomName)
 
