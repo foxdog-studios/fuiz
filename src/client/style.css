@@ -119,6 +119,7 @@ body {
 .choice-wrapper.wrong {
   opacity: 0.4;
   transition: opacity 0.4s ease-out;
+  transition-delay: 1.6s;
 }
 
 .time-left {
@@ -157,23 +158,28 @@ body {
   opacity: 1;
   transition: border 0.4s ease-out, opacity 0.4s ease-out;
   border: 5px solid rgba(0, 0, 0, 0);
+  transition-delay: 0s;
 }
 
 .player.answered {
-  border: 5px solid #F9DA10;
+  color: #F9DA10;
+  transition-delay: 0s;
 }
 
 .player.correct {
   border: 5px solid #58FF4D;
+  transition-delay: 4s;
 }
 
 .player.wrong {
   border: 5px solid #FF4D58;
   opacity: 0.4;
+  transition-delay: 4s;
 }
 
 .player.no-answer {
   opacity: 0.4;
+  transition-delay: 4s;
 }
 
 .controls {
