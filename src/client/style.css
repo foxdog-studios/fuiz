@@ -94,6 +94,13 @@ body {
   text-align: center;
 }
 
+.answer-letter {
+  display: inline-block;
+  width: 3vw;
+  height: 3vw;
+  text-align: center;
+}
+
 .choice {
   float: left;
   width: 90%;
@@ -206,15 +213,15 @@ body {
   height: 34%;
 }
 
-.choice-letter.a, [name="a"] {
+.letter.a, [name="a"] {
   background-color: #4ECDC4;
 }
 
-.choice-letter.b, [name="b"] {
+.letter.b, [name="b"] {
   background-color: #C7F464;
 }
 
-.choice-letter.c, [name="c"] {
+.letter.c, [name="c"] {
   background-color: #FF6B6B;
 }
 

@@ -23,7 +23,7 @@
       {{#each choices}}
       <div class="choice-wrapper {{correctChoice}}">
         <div class="choice-letter-wrapper">
-          <div class="choice-letter {{letter}}">
+          <div class="choice-letter letter {{letter}}">
             {{letter}}
           </div>
         </div>
@@ -50,9 +50,9 @@
       <p>{{score}}</p>
       <p>{{name}}</p>
       <p>
-      {{#if playerIsCorrect}}
-        {{answer}}
-      {{/if}}
+        <div class="answer-letter letter {{answer}}">
+          {{answer}}
+        </div>
       </p>
     </div>
     {{/each}}
