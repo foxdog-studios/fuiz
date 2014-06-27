@@ -64,6 +64,9 @@ Template.master.helpers
   players: ->
     Players.find()
 
+  results: ->
+    Players.find {}, sort: score: -1
+
   answer: ->
     ['a', 'b', 'c'][Player.currentAnswer(@playerId)]
 

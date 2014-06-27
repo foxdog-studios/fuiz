@@ -4,8 +4,13 @@
   <div id="darken">
   </div>
   {{#if isGameOver}}
+    <div id="game-over-darken">
+    </div>
     <div class="game-over">
       <p>Game Over!</p>
+      {{#each results}}
+        <p>{{name}} - {{score}}</p>
+      {{/each}}
     </div>
   {{/if}}
   {{#with currentQuestion}}
