@@ -51,6 +51,8 @@ Template.master.helpers
         return 'wrong'
     if Player.hasAnsweredCurrentQuestion(@playerId)
       return 'answered'
+    if Game.currentAnswer()
+      return 'no-answer'
 
   correctChoice: ->
     return unless @isCorrectAnswer?
