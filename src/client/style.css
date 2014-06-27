@@ -183,10 +183,12 @@ body {
   width: 100%;
 }
 
-.player-name {
+.player-info {
   position: absolute;
   z-index: 1;
   pointer-events: none;
+  top: 0px;
+  height: 10%;
 }
 
 .player-button {
@@ -194,7 +196,7 @@ body {
   width: 100%;
   left: 0px;
   right: 0px;
-  height: 33%;
+  height: 30%;
   opacity: 1;
   transition: opacity 0.4s ease-out;
 }
@@ -208,16 +210,15 @@ body {
 }
 
 [name="a"] {
-  top: 0px;
+  top: 10%;
 }
 
 [name="b"] {
-  top: 33%;
+  top: 40%;
 }
 
 [name="c"] {
-  top: 66%;
-  height: 34%;
+  top: 70%;
 }
 
 .letter.a, [name="a"] {

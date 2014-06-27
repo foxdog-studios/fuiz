@@ -1,7 +1,9 @@
 <template name="player">
-  {{#with player}}
-    <h1 class="player-name">{{name}}</h1>
-  {{/with}}
+  <div class="player-info">
+    {{#with player}}
+      {{name}} - {{score}} points
+    {{/with}}
+  </div>
   <canvas class="player-button {{selected 0}}" name="a"></canvas>
   <canvas class="player-button {{selected 1}}" name="b"></canvas>
   <canvas class="player-button {{selected 2}}" name="c"></canvas>
